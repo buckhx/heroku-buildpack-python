@@ -185,6 +185,12 @@ set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 set-default-env PYTHONPATH /app/
 
+echo "-----> Fetching OpenSSL binaries"
+mkdir -p $1/vendor/openssl
+cd $1/vendor/openssl
+curl https://moonshot-buildpack-ruby.s3.amazonaws.com/binaries/openssl-1.0.1e.tgz -s -o - | tar xzf -
+echo "-----> Got OpenSSL binaries"
+
 
 # Experimental post_compile hook.
 bpwatch start post_compile
